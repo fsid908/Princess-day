@@ -1,0 +1,496 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(145deg, #fff4f8, #ffe3ef, #f8eaff);
+  color: #914d70;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.background-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 20%, #ffffffa8, transparent 30%),
+    radial-gradient(circle at 85% 80%, #f4c6ff70, transparent 35%);
+}
+
+.page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 16px 65px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.top-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  color: #c77b9e;
+}
+
+h1 {
+  margin-top: 18px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 9vw, 62px);
+  color: #bd6490;
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #aa7894;
+}
+
+/* Envelope */
+
+.envelope-scene {
+  width: min(340px, 90vw);
+  height: 255px;
+  position: relative;
+  margin-top: 48px;
+  perspective: 1000px;
+}
+
+.envelope {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 195px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #f5b8d1;
+  border-radius: 8px;
+}
+
+.letter-preview {
+  position: absolute;
+  top: 10px;
+  left: 10%;
+  width: 80%;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff9fc;
+  border-radius: 5px;
+  color: #bd6490;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+}
+
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  background: #f9c9dc;
+  clip-path: polygon(0 0, 100% 0, 50% 65%);
+  transform-origin: top;
+  transition: transform .8s ease;
+  z-index: 5;
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  background: #f5b1ce;
+  clip-path: polygon(0 0, 50% 53%, 100% 0, 100% 100%, 0 100%);
+  z-index: 4;
+}
+
+.seal {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%, -50%);
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #d978a3;
+  color: white;
+  font-size: 23px;
+  box-shadow: 0 3px 12px #b75a8840;
+  z-index: 6;
+  transition: opacity .3s;
+}
+
+/* Letter */
+
+.letter {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  width: 94%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-50%);
+  background: #fffafd;
+  border: 1px solid #f4d7e5;
+  border-radius: 13px;
+  box-shadow: 0 15px 50px #c77b9e30;
+  z-index: 2;
+  transition:
+    max-height 1s ease,
+    opacity .6s ease,
+    transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.letter-inner {
+  padding: 30px 24px;
+}
+
+.letter-top,
+.letter-footer {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #d18cac;
+}
+
+.flower {
+  font-size: 35px;
+  margin-top: 20px;
+}
+
+.letter h2 {
+  margin-top: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: #c26391;
+}
+
+.letter-subtitle {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #bd8ba5;
+}
+
+.divider {
+  margin: 22px 0;
+  color: #dc9ab9;
+  letter-spacing: 5px;
+}
+
+.message {
+  text-align: left;
+  color: #806477;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.message p {
+  margin-bottom: 15px;
+}
+
+/* Islamic dua */
+
+.dua {
+  margin-top: 22px;
+  padding: 20px 12px;
+  background: #fff0f6;
+  border: 1px solid #f5d6e4;
+  border-radius: 12px;
+  line-height: 1.8;
+}
+
+.arabic {
+  font-family: 'Amiri', serif;
+  font-size: 25px;
+  color: #bd6490;
+  direction: rtl;
+}
+
+.dua p {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #896b7e;
+}
+
+.dua strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #c26391;
+}
+
+.final-wish {
+  margin-top: 22px;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #c26391;
+  line-height: 1.5;
+}
+
+.signature {
+  margin-top: 28px;
+  text-align: right;
+  font-size: 11px;
+  line-height: 2;
+  color: #98758a;
+}
+
+.signature span {
+  display: block;
+  color: #c26391;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+}
+
+.letter-footer {
+  margin-top: 28px;
+}
+
+/* Open animation */
+
+.envelope-scene.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-scene.open .seal {
+  opacity: 0;
+}
+
+.envelope-scene.open .letter {
+  max-height: 75svh;
+  overflow-y: auto;
+  opacity: 1;
+  transform: translate(-50%, -165px);
+  z-index: 7;
+}
+
+.envelope-scene.open .envelope {
+  pointer-events: none;
+}
+
+/* Floating hearts */
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  z-index: 10;
+  animation: floatUp 5s linear forwards;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.instruction {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #b77d9b;
+  animation: pulse 2s infinite;
+}
+
+.bottom-text {
+  position: absolute;
+  bottom: 20px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #c28da8;
+}
+
+@keyframes pulse {
+  50% { opacity: .5; }
+}
+
+@media (max-width: 400px) {
+  .envelope-scene {
+    width: 290px;
+  }
+
+  .letter-inner {
+    padding: 25px 18px;
+  }
+
+  .letter h2 {
+    font-size: 26px;
+  }
+
+  .message {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ===== FIXED ENVELOPE & LETTER ANIMATION ===== */
+
+
+.instruction {
+  margin-top: 28px;
+  margin-bottom: -25px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #bd6490;
+  letter-spacing: .3px;
+  animation: pulse 2s infinite;
+}
+
+.envelope-scene {
+  height: 255px;
+  transition: height .8s ease;
+  isolation: isolate;
+}
+
+.envelope-scene.open {
+  height: min(72svh, 650px);
+}
+
+/* Letter positioning */
+
+.letter {
+  bottom: 105px;
+  left: 50%;
+  width: 96%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate(-50%, 35px);
+  z-index: 10;
+
+  transition:
+    max-height 1s ease,
+    opacity .6s ease,
+    transform .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.envelope-scene.open .letter {
+  max-height: 60svh;
+  overflow-y: auto;
+  opacity: 1;
+  transform: translate(-50%, 0);
+  z-index: 10;
+}
+
+/* Keep envelope behind the letter */
+
+.envelope {
+  z-index: 5;
+}
+
+.envelope-scene.open .envelope {
+  z-index: 5;
+  pointer-events: none;
+}
+
+.envelope-scene.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-scene.open .seal {
+  opacity: 0;
+}
+
+/* Bigger and clearer text */
+
+.letter-inner {
+  padding: 32px 27px;
+}
+
+.letter h2 {
+  font-size: 32px;
+}
+
+.letter-subtitle {
+  font-size: 14px;
+}
+
+.message {
+  font-size: 15px;
+  line-height: 2;
+  text-align: left;
+}
+
+.message p {
+  margin-bottom: 17px;
+}
+
+.arabic {
+  font-size: 29px;
+  line-height: 2;
+}
+
+.dua p {
+  font-size: 14px;
+}
+
+.dua strong {
+  font-size: 14px;
+}
+
+.final-wish {
+  font-size: 21px;
+  line-height: 1.7;
+}
+
+.signature {
+  font-size: 13px;
+}
+
+.signature span {
+  font-size: 19px;
+}
+
+/* Mobile optimization */
+
+@media (max-width: 480px) {
+  .envelope-scene.open {
+    height: 68svh;
+  }
+
+  .envelope-scene.open .letter {
+    max-height: 56svh;
+    bottom: 105px;
+  }
+
+  .letter-inner {
+    padding: 25px 19px;
+  }
+
+  .letter h2 {
+    font-size: 27px;
+  }
+
+  .message {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .arabic {
+    font-size: 25px;
+  }
+}
